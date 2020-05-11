@@ -45,7 +45,7 @@ class MainActivity : BaseActivity() {
     }
 
     private fun getWeather(cityName: String) {
-        //实体不需要继承ResultModel，为了不影响已经使用该库的项目，使用了新的AbstractObserver和ResultModel<T>
+        //实体不需要继承ResultModel，为了不影响已经使用该库的项目，使用了新的SimpleAbstractObserver和ResultModel<T>
         RetrofitManage.getInstance().retrofit.create(ServiceAPI::class.java)
             .getWeather(cityName)
             .compose(Transformer<ResultModel<Weather>>().iOMainNoProgress(this))
