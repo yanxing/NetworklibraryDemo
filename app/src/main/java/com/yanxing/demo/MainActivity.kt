@@ -34,8 +34,8 @@ class MainActivity : BaseActivity() {
         //需要继承BaseModel方式
         RetrofitManage.getInstance().retrofit.create(ServiceAPI::class.java)
             .getWeather1(cityName)
-            .compose(Transformer<Weather1>().iOMainNoProgress(this))
-            .subscribe(object : AbstractObserver<Weather1>(this) {
+            .compose(Transformer<Weather1>().iOMainHasProgress(this, mFragmentManager))
+            .subscribe(object : AbstractObserver<Weather1>(this,mFragmentManager) {
                 override fun onCall(t: Weather1) {
                     t.data?.let {
                         result1.text = it.toString()
@@ -45,11 +45,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun getWeather(cityName: String) {
-        //不需要继承ResultModel，ResultModel<T>泛型形式
+        //实体不需要继承ResultModel，为了不影响已经使用该库的项目，使用了新的AbstractObserver和ResultModel<T>
         RetrofitManage.getInstance().retrofit.create(ServiceAPI::class.java)
             .getWeather(cityName)
             .compose(Transformer<ResultModel<Weather>>().iOMainNoProgress(this))
-            //为了不影响已经使用该库的项目，使用了新的AbstractObserver和ResultModel
             .subscribe(object : SimpleAbstractObserver<ResultModel<Weather>>(this) {
                 override fun onCall(t: ResultModel<Weather>) {
                     t.data?.let {
