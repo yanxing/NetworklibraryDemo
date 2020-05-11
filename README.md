@@ -6,14 +6,16 @@
 * 可以设置接口请求完成后上下拉刷新控件置为完成状态，刷新组件需要实现PullToRefresh接口。
 * 接口请求参数和返回数据打印。
 * 可以设置自定义的拦截器、请求头参数和okHttpClient。
-* gradle 
+
+gradle接入，android support版本
 ```java
  compile 'com.yanxing:networklibrary:1.2.1'
  ```
- androidx
+ androidx版本
  ```java
  compile 'com.yanxing:networklibrary:2.0.4'
  ```
+example
 ```kotlin
   RetrofitManage.getInstance().retrofit.create(ServiceAPI::class.java)
       .getWeather1(cityName)
@@ -72,7 +74,7 @@ data class Weather(
     var reportTime: String
 )
 ```
-使用方式
+example
 ```kotlin
  //实体不需要继承ResultModel，为了不影响已经使用该库的项目，使用了新的AbstractObserver和ResultModel<T>
   RetrofitManage.getInstance().retrofit.create(ServiceAPI::class.java)
