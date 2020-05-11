@@ -1,10 +1,11 @@
 package com.yanxing.networklibrary;
 
 import android.content.Context;
-import androidx.fragment.app.FragmentManager;
 import android.text.TextUtils;
 
-import com.yanxing.networklibrary.model.BaseModel;
+import androidx.fragment.app.FragmentManager;
+
+import com.yanxing.networklibrary.model.ResultModel;
 import com.yanxing.networklibrary.refresh.PullToRefresh;
 import com.yanxing.networklibrary.util.ErrorCodeUtil;
 import com.yanxing.networklibrary.util.ToastUtil;
@@ -12,48 +13,48 @@ import com.yanxing.networklibrary.util.ToastUtil;
 
 /**
  * 根据接口返回状态码预处理，如果onNext方法中接口请求返回成功状态逻辑处理不一样，可重写此方法
- * json实体需要继承BaseModel
- * Created by 李双祥 on 2017/5/23.
+ * json实体不需要继承ResultModel，ResultModel<json实体>
+ * Created by 李双祥 on 2020/5/11.
  */
-public abstract class AbstractObserver<T extends BaseModel> extends BaseAbstractObserver<T> {
+public abstract class SimpleAbstractObserver<T extends ResultModel> extends BaseAbstractObserver<T> {
 
-    protected AbstractObserver(Context context) {
+    protected SimpleAbstractObserver(Context context) {
         super(context);
     }
 
-    protected AbstractObserver(Context context, String message) {
+    protected SimpleAbstractObserver(Context context, String message) {
         super(context, message);
     }
 
-    protected AbstractObserver(Context context, boolean isShowToast) {
+    protected SimpleAbstractObserver(Context context, boolean isShowToast) {
         super(context, isShowToast);
     }
 
-    protected AbstractObserver(Context context, PullToRefresh pullToRefresh) {
+    protected SimpleAbstractObserver(Context context, PullToRefresh pullToRefresh) {
         super(context, pullToRefresh);
     }
 
-    protected AbstractObserver(Context context, PullToRefresh pullToRefresh, String message) {
+    protected SimpleAbstractObserver(Context context, PullToRefresh pullToRefresh, String message) {
         super(context, pullToRefresh, message);
     }
 
-    protected AbstractObserver(Context context, PullToRefresh pullToRefresh, FragmentManager fragmentManager, boolean isShowToast) {
+    protected SimpleAbstractObserver(Context context, PullToRefresh pullToRefresh, FragmentManager fragmentManager, boolean isShowToast) {
         super(context, pullToRefresh, fragmentManager, isShowToast);
     }
 
-    protected AbstractObserver(Context context, PullToRefresh pullToRefresh, boolean isShowToast) {
+    protected SimpleAbstractObserver(Context context, PullToRefresh pullToRefresh, boolean isShowToast) {
         super(context, pullToRefresh, isShowToast);
     }
 
-    protected AbstractObserver(Context context, FragmentManager fragmentManager) {
+    protected SimpleAbstractObserver(Context context, FragmentManager fragmentManager) {
         super(context, fragmentManager);
     }
 
-    protected AbstractObserver(Context context, FragmentManager fragmentManager, String message) {
+    protected SimpleAbstractObserver(Context context, FragmentManager fragmentManager, String message) {
         super(context, fragmentManager, message);
     }
 
-    protected AbstractObserver(Context context, FragmentManager fragmentManager, boolean isShowToast) {
+    protected SimpleAbstractObserver(Context context, FragmentManager fragmentManager, boolean isShowToast) {
         super(context, fragmentManager, isShowToast);
     }
 

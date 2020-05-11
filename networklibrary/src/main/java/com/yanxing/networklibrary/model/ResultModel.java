@@ -4,7 +4,7 @@ package com.yanxing.networklibrary.model;
  * 方便响应成功和提示统一处理
  * Created by 李双祥 on 2017/5/23
  */
-public class BaseModel{
+public class ResultModel<T> {
 
     /**
      * 返回状态码1
@@ -23,6 +23,8 @@ public class BaseModel{
      * 返回信息2
      */
     protected String msg;
+
+    protected T data;
 
     public String getStatus() {
         return status;
@@ -54,5 +56,13 @@ public class BaseModel{
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
     }
 }
