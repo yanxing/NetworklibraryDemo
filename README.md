@@ -1,6 +1,6 @@
 # NetworklibraryDemo
 对retrofit2+rxjava2网络请求的简单封装。
-* 适用于返回接口json形式的项目
+* 适用于接口返回json数据的项目
 * 使用了Rxlifecycle2来防止RxJava的内存泄露，所以基类需要继承Rxlifecycle2相关类，或者实现LifecycleProvider接口
 * 可以设置接口请求时等待对话框
 * 可以设置接口请求完成后上下拉刷新控件置为完成状态，刷新组件需要实现PullToRefresh接口。
