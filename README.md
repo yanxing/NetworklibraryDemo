@@ -9,11 +9,11 @@
 
 gradle接入，android support版本
 ```java
- compile 'com.yanxing:networklibrary:1.2.1'
+ implementation 'com.yanxing:networklibrary:1.2.1'
  ```
  androidx版本
  ```java
- compile 'com.yanxing:networklibrary:2.0.4'
+ implementation 'com.yanxing:networklibrary:2.0.5'
  ```
 example
 ```kotlin
@@ -28,7 +28,7 @@ example
 ```
 
 ### 后续
-上面的做法需要实体类继承BaseModel，并且实体类内部有一个静态DataBean类，不利于旧项目的接入（需要修改实体类，继承BaseModel,或者新建一个类，用旧的实体类作为“DataBean”），例如json数据：
+2.0.4版本（包括）需要实体类继承BaseModel，并且实体类内部有一个静态DataBean类，不利于旧项目的接入（需要修改实体类，继承BaseModel,或者新建一个类，用旧的实体类作为“DataBean”），例如json数据：
 ```json
 {
     "code": 1,

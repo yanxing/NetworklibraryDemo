@@ -1,33 +1,31 @@
 apply plugin: 'com.android.library'
 
-//ext {
-//    bintrayRepo = 'android-util'
-//    bintrayName = 'networklibrary'
-//
-//    publishedGroupId = 'com.yanxing'
-//    libraryName = 'networklibrary'
-//    artifact = 'networklibrary'
-//
-//    libraryDescription = 'a simple retrofit2 and rxjava2 network package for android'
-//
-//    siteUrl = 'https://github.com/yanxing/android-util'
-//    gitUrl = 'https://github.com/yanxing/android-util.git'
-//
-//    libraryVersion = '2.0.4'
-//
-//    developerId = 'yanxing'
-//    developerName = 'yanxing'
-//    developerEmail = 'lyxtime@163.com'
-//
-//    licenseName = 'The Apache Software License, Version 2.0'
-//    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-//    allLicenses = ["Apache-2.0"]
-//}
+ext {
+    bintrayRepo = 'android-util'
+    bintrayName = 'networklibrary'
 
+    publishedGroupId = 'com.yanxing'
+    libraryName = 'networklibrary'
+    artifact = 'networklibrary'
+
+    libraryDescription = 'a simple retrofit2 and rxjava2 network package for android'
+
+    siteUrl = 'https://github.com/yanxing/NetworklibraryDemo'
+    gitUrl = 'https://github.com/yanxing/NetworklibraryDemo.git'
+
+    libraryVersion = '2.0.5'
+
+    developerId = 'yanxing'
+    developerName = 'yanxing'
+    developerEmail = 'lyxtime@163.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
 
 android {
     compileSdkVersion 29
-
 
     defaultConfig {
         versionCode 1
@@ -57,7 +55,7 @@ dependencies {
     api 'com.google.code.gson:gson:2.8.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
-//
-//apply from: 'install.gradle'
-//apply from: 'bintray.gradle'
+
+apply from: 'install.gradle'
+apply from: 'bintray.gradle'
 
