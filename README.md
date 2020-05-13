@@ -15,19 +15,8 @@ gradle接入，android support版本
  ```java
  implementation 'com.yanxing:networklibrary:2.0.5'
  ```
-example
-```kotlin
-  RetrofitManage.getInstance().retrofit.create(ServiceAPI::class.java)
-      .getWeather1(cityName)
-      .compose(Transformer<Weather1>().iOMainNoProgress(this))
-      .subscribe(object : AbstractObserver<Weather1>(this) {
-           override fun onCall(t: Weather1) {
-                 
-             }
-        })
-```
 
-### 后续
+### 说明
 2.0.4版本（包括）需要实体类继承BaseModel，并且实体类内部有一个静态DataBean类，不利于旧项目的接入（需要修改实体类，继承BaseModel,或者新建一个类，用旧的实体类作为“DataBean”），例如json数据：
 ```json
 {
@@ -61,6 +50,18 @@ data class Weather1(var data: DataBean? = null):BaseModel() {
     )
 }
 ```
+2.0.4版本请求示例
+```kotlin
+  RetrofitManage.getInstance().retrofit.create(ServiceAPI::class.java)
+      .getWeather1(cityName)
+      .compose(Transformer<Weather1>().iOMainNoProgress(this))
+      .subscribe(object : AbstractObserver<Weather1>(this) {
+           override fun onCall(t: Weather1) {
+                 
+             }
+        })
+```
+
 新版本可以不用继承该库中的实体，新的实体为
 ```kotlin
 data class Weather(
@@ -74,7 +75,7 @@ data class Weather(
     var reportTime: String
 )
 ```
-example
+新版本请求示例
 ```kotlin
  //实体不需要继承ResultModel，为了不影响已经使用该库的项目，使用了新的SimpleAbstractObserver和ResultModel<T>
   RetrofitManage.getInstance().retrofit.create(ServiceAPI::class.java)
