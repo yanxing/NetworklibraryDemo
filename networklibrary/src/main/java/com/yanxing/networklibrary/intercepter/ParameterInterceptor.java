@@ -40,14 +40,7 @@ public class ParameterInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request oldRequest = chain.request();
-        HttpUrl.Builder urlBuilder = oldRequest.url()
-                .newBuilder()
-                .scheme(oldRequest.url().scheme())
-                .host(oldRequest.url().host());
-
-        Request.Builder builder = oldRequest.newBuilder()
-                .method(oldRequest.method(), oldRequest.body())
-                .url(urlBuilder.build());
+        Request.Builder builder = oldRequest.newBuilder();
         //添加header
         if (mHeadMap != null) {
             for (Map.Entry<String, String> entry : mHeadMap.entrySet()) {

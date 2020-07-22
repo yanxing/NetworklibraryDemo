@@ -31,6 +31,6 @@ public class GsonUtil {
                     public boolean shouldSkipClass(Class<?> arg0) {
                         return false;
                     }
-                }).create();
+                }).setLenient().create();
     }
 }

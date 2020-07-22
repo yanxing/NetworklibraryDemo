@@ -3,6 +3,7 @@ package com.yanxing.networklibrary.model;
 /**
  * 方便响应成功和提示统一处理
  * Created by 李双祥 on 2017/5/23
+ * @deprecated 使用 {@link ResultModel}
  */
 public class BaseModel{
 

@@ -73,12 +73,20 @@ public class RetrofitManage {
     }
 
     /**
-     * 自定义okHttpClient
-     *
-     * @param okHttpClient
+     * 设置OkHttpClient.Builder
+      * @param okHttpClientBuilder
      */
-    public void setHttpClient(OkHttpClient okHttpClient) {
-        mRetrofitBuilder.client(okHttpClient);
+    public void setOkHttpClientBuilder(OkHttpClient.Builder okHttpClientBuilder){
+        mOkHttpClientBuilder=okHttpClientBuilder;
+        mRetrofitBuilder.client(this.mOkHttpClientBuilder.build());
+    }
+
+    /**
+     * 获取OkHttpClient.Builder，用于增加OkHttpClient.Builder属性设置
+     * @return
+     */
+    public OkHttpClient.Builder getOkHttpClientBuilder(){
+        return mOkHttpClientBuilder;
     }
 
     /**

@@ -17,7 +17,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 /**
- * 统一处理onCompleted onError方法
+ * 基类，统一处理onCompleted onError方法
  * Created by 李双祥 on 2017/5/23.
  */
 public abstract class BaseAbstractObserver<T> implements Observer<T> {
