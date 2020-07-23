@@ -29,12 +29,11 @@ public class RetrofitManage {
     }
 
     public static RetrofitManage getInstance() {
-        return SingletonHolder.retrofitManage;
-
+        return SingletonHolder.RETROFIT_MANAGE;
     }
 
     private static class SingletonHolder {
-        private static final RetrofitManage retrofitManage = new RetrofitManage();
+        private static final RetrofitManage RETROFIT_MANAGE = new RetrofitManage();
     }
 
     /**
@@ -44,9 +43,14 @@ public class RetrofitManage {
      * @param log     true打印请求参数和返回数据
      */
     public synchronized void init(String baseUrl, boolean log) {
-        LogUtil.isDebug = log;
         mOkHttpClientBuilder = getOkHttpClientBuilderTimeout()
                 .addInterceptor(new ParameterInterceptor());
+        init(baseUrl, mOkHttpClientBuilder, log);
+    }
+
+    public synchronized void init(String baseUrl, OkHttpClient.Builder okHttpClientBuilder, boolean log) {
+        LogUtil.isDebug = log;
+        mOkHttpClientBuilder = okHttpClientBuilder;
         mRetrofitBuilder = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create(GsonUtil.createGson()))
@@ -54,15 +58,22 @@ public class RetrofitManage {
                 .client(mOkHttpClientBuilder.build());
     }
 
+    public synchronized void init(String baseUrl, Map<String, String> headers, boolean log) {
+        mOkHttpClientBuilder = getOkHttpClientBuilderTimeout()
+                .addInterceptor(new ParameterInterceptor(headers));
+        init(baseUrl, mOkHttpClientBuilder, log);
+    }
+
     /**
-     * 设置拦截器
+     * 添加拦截器
      */
     public void setInterceptor(Interceptor interceptor) {
         mRetrofitBuilder.client(mOkHttpClientBuilder.addInterceptor(interceptor).build());
     }
 
     /**
-     * 为每个请求设置头部信息，比如token信息，这里重新创建OkHttpClient.Builder()，防止之前添加的拦截器（更新header）再次执行
+     * 设置header，因为header在拦截器中添加，会重新创建默认OkHttpClientBuilder，之前设置的OkHttpClientBuilder属性将无效。
+     * 若header是固定的（例如AppID，非登录后返回的token），可以在init方法中初始化headers
      *
      * @param headers
      */
@@ -74,18 +85,20 @@ public class RetrofitManage {
 
     /**
      * 设置OkHttpClient.Builder
-      * @param okHttpClientBuilder
+     *
+     * @param okHttpClientBuilder
      */
-    public void setOkHttpClientBuilder(OkHttpClient.Builder okHttpClientBuilder){
-        mOkHttpClientBuilder=okHttpClientBuilder;
+    public void setOkHttpClientBuilder(OkHttpClient.Builder okHttpClientBuilder) {
+        mOkHttpClientBuilder = okHttpClientBuilder;
         mRetrofitBuilder.client(this.mOkHttpClientBuilder.build());
     }
 
     /**
      * 获取OkHttpClient.Builder，用于增加OkHttpClient.Builder属性设置
+     *
      * @return
      */
-    public OkHttpClient.Builder getOkHttpClientBuilder(){
+    public OkHttpClient.Builder getOkHttpClientBuilder() {
         return mOkHttpClientBuilder;
     }
 
@@ -102,19 +115,6 @@ public class RetrofitManage {
                 .readTimeout(readTimeOut, TimeUnit.SECONDS)
                 .writeTimeout(writeTimeout, TimeUnit.SECONDS);
         mRetrofitBuilder.client(mOkHttpClientBuilder.build());
-    }
-
-    /**
-     * 设置无网络时是否缓存
-     *
-     * @param context
-     * @param cache   无网络时true使用缓存的数据
-     */
-    public void setNoNetworkCache(Context context, boolean cache) {
-        if (cache) {
-            mOkHttpClientBuilder.addInterceptor(new CacheInterceptor(context));
-            mRetrofitBuilder.client(mOkHttpClientBuilder.build());
-        }
     }
 
     public Retrofit getRetrofit() {
