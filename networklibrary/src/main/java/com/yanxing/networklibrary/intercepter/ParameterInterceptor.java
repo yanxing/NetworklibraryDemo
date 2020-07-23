@@ -73,15 +73,13 @@ public class ParameterInterceptor implements Interceptor {
         if (requestBody != null) {
             //键值参数
             if (requestBody instanceof FormBody) {
-                FormBody formBody = ((FormBody) oldRequest.body());
-                if (formBody != null) {
-                    for (int i = 0; i < formBody.size(); i++) {
-                        postParams
-                                .append(formBody.encodedName(i))
-                                .append("=")
-                                .append(formBody.encodedValue(i))
-                                .append("  ");
-                    }
+                FormBody formBody = (FormBody) requestBody;
+                for (int i = 0; i < formBody.size(); i++) {
+                    postParams
+                            .append(formBody.encodedName(i))
+                            .append("=")
+                            .append(formBody.encodedValue(i))
+                            .append("  ");
                 }
             } else if (requestBody instanceof MultipartBody) {
 
