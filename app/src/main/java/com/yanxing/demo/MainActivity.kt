@@ -23,11 +23,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun init() {
-        RetrofitManage.getInstance().init("https://www.mxnzp.com/api/", true)
         val header = ArrayMap<String, String>()
         header.put("app_id", "oikqyppvlokrnkpq")
         header.put("app_secret", "YlpnRkR2TjhNRS9EU0ZKenFVNmllZz09")
-        RetrofitManage.getInstance().setHeader(header)
+        RetrofitManage.getInstance().init("https://www.mxnzp.com/api/",header, true)
     }
 
     private fun getWeather1(cityName: String) {

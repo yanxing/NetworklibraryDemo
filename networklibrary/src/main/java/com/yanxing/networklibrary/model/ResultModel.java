@@ -7,20 +7,20 @@ package com.yanxing.networklibrary.model;
 public class ResultModel<T> {
 
     /**
-     * 返回状态码1
+     * 可能用的状态码1
      */
     protected String status;
 
     /**
-     * 返回状态码2
+     * 可能用的状态码2
      */
     protected String code;
     /**
-     * 返回信息1
+     * 可能用的信息1
      */
     protected String message;
     /**
-     * 返回信息2
+     * 可能用的信息2
      */
     protected String msg;
 

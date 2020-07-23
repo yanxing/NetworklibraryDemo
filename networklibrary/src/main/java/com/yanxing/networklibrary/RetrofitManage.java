@@ -1,9 +1,7 @@
 package com.yanxing.networklibrary;
 
 
-import android.content.Context;
 
-import com.yanxing.networklibrary.intercepter.CacheInterceptor;
 import com.yanxing.networklibrary.intercepter.ParameterInterceptor;
 import com.yanxing.networklibrary.intercepter.Interceptor;
 import com.yanxing.networklibrary.util.GsonUtil;
