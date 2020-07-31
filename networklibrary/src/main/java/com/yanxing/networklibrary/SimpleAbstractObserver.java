@@ -12,7 +12,7 @@ import com.yanxing.networklibrary.util.ToastUtil;
 
 
 /**
- * 根据接口返回状态码预处理，如果onNext方法中接口请求返回成功状态逻辑处理不一样，可重写此方法
+ * 统一处理onNext，如果onNext方法中接口请求返回成功状态逻辑处理不一样，可重写此方法
  * json实体不需要继承ResultModel，ResultModel<json实体>
  * Created by 李双祥 on 2020/5/11.
  */

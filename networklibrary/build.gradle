@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/yanxing/NetworklibraryDemo'
     gitUrl = 'https://github.com/yanxing/NetworklibraryDemo.git'
 
-    libraryVersion = '2.0.7'
+    libraryVersion = '2.0.8'
 
     developerId = 'yanxing'
     developerName = 'yanxing'
