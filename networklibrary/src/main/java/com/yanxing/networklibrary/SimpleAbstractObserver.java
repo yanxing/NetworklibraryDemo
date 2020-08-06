@@ -12,11 +12,11 @@ import com.yanxing.networklibrary.util.ToastUtil;
 
 
 /**
- * 统一处理onNext，如果onNext方法中接口请求返回成功状态逻辑处理不一样，可重写此方法
- * json实体不需要继承ResultModel，ResultModel<json实体>
+ * 统一处理onNext方法，如果接口返回的json格式字段和ResultModel不一样，可重写此方法
+ * json实体不需要继承ResultModel
  * Created by 李双祥 on 2020/5/11.
  */
-public abstract class SimpleAbstractObserver<T extends ResultModel> extends BaseAbstractObserver<T> {
+public abstract class SimpleAbstractObserver<T> extends BaseAbstractObserver<ResultModel<T>> {
 
     protected SimpleAbstractObserver(Context context) {
         super(context);
@@ -59,16 +59,17 @@ public abstract class SimpleAbstractObserver<T extends ResultModel> extends Base
     }
 
     @Override
-    public void onNext(T t) {
-        if (ErrorCodeUtil.isSuccess(t.getStatus())||ErrorCodeUtil.isSuccess(t.getCode())) {
-            onCall(t);
+    public void onNext(ResultModel<T> resultModel) {
+        if (ErrorCodeUtil.isSuccess(resultModel.getStatus()) || ErrorCodeUtil.isSuccess(resultModel.getCode())) {
+            onCall(resultModel);
+            onCollect(resultModel.getData());
         } else {
             //业务逻辑不成功时，显示信息提示
             if (mContext != null && mIsShowToast) {
                 if (TextUtils.isEmpty(mMessage)) {
                     //显示不成功时接口返回的信息提示（接口可能用的message/msg信息字段，如果都不匹配，则可重写onNext方法）
-                    String msg=TextUtils.isEmpty(t.getMsg())?"":t.getMsg();
-                    ToastUtil.showToast(mContext, TextUtils.isEmpty(t.getMessage()) ? msg : t.getMessage());
+                    String msg = TextUtils.isEmpty(resultModel.getMsg()) ? "" : resultModel.getMsg();
+                    ToastUtil.showToast(mContext, TextUtils.isEmpty(resultModel.getMessage()) ? msg : resultModel.getMessage());
                 } else {
                     //显示客户端自定义的信息提示
                     ToastUtil.showToast(mContext, mMessage);
@@ -76,4 +77,16 @@ public abstract class SimpleAbstractObserver<T extends ResultModel> extends Base
             }
         }
     }
+
+    @Override
+    public void onCall(ResultModel<T> resultModel) {
+    }
+
+    /**
+     * 新，请求成功返回data中的数据，不同于onCall(T t)方法
+     *
+     * @param data
+     */
+    public abstract void onCollect(T data);
+
 }

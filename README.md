@@ -37,7 +37,7 @@ gradle接入，android support版本
 生成的实体类为
 ```kotlin
 data class Weather1(var data: DataBean? = null):BaseModel() {
-    //Weather1实体需要继承BaseModel，静态类DataBean才是有用数据
+    //Weather1实体需要继承BaseModel，DataBean类才是有用数据
     data class DataBean(
         var address: String,
         var cityCode: String,
@@ -81,8 +81,8 @@ data class Weather(
   RetrofitManage.getInstance().retrofit.create(ServiceAPI::class.java)
       .getWeather(cityName)
       .compose(Transformer<ResultModel<Weather>>().iOMainNoProgress(this))
-      .subscribe(object : SimpleAbstractObserver<ResultModel<Weather>>(this) {
-           override fun onCall(t: ResultModel<Weather>) {
+      .subscribe(object : SimpleAbstractObserver<Weather>(this) {
+           override fun onCollect(data: Weather?) {
                    
             }
       })

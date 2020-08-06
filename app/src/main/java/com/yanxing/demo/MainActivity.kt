@@ -48,11 +48,9 @@ class MainActivity : BaseActivity() {
         RetrofitManage.getInstance().retrofit.create(ServiceAPI::class.java)
             .getWeather(cityName)
             .compose(Transformer<ResultModel<Weather>>().iOMainNoProgress(this))
-            .subscribe(object : SimpleAbstractObserver<ResultModel<Weather>>(this) {
-                override fun onCall(t: ResultModel<Weather>) {
-                    t.data?.let {
-                        result.text = it.toString()
-                    }
+            .subscribe(object : SimpleAbstractObserver<Weather>(this) {
+                override fun onCollect(data: Weather?) {
+                    data?.apply { result.text = toString() }
                 }
             })
     }
