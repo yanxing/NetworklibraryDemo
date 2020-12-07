@@ -13,7 +13,7 @@ gradle接入，android support版本
  ```
  androidx版本
  ```java
- implementation 'com.yanxing:networklibrary:2.0.9'
+ implementation 'com.yanxing:networklibrary:2.1.2'
  ```
 
 ### 说明
