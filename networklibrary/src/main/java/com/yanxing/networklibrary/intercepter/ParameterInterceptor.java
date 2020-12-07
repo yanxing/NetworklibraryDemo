@@ -82,7 +82,8 @@ public class ParameterInterceptor implements Interceptor {
                             .append("  ");
                 }
             } else if (requestBody instanceof MultipartBody) {
-
+                //文件上传，不打印日志
+                return chain.proceed(builder.build());
             } else {//json参数
                 final Buffer buffer = new Buffer();
                 requestBody.writeTo(buffer);

@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/yanxing/NetworklibraryDemo'
     gitUrl = 'https://github.com/yanxing/NetworklibraryDemo.git'
 
-    libraryVersion = '2.1.0'
+    libraryVersion = '2.1.2'
 
     developerId = 'yanxing'
     developerName = 'yanxing'
@@ -52,7 +52,7 @@ dependencies {
     api 'com.squareup.retrofit2:converter-gson:2.4.0'
     api 'com.trello.rxlifecycle2:rxlifecycle:2.2.0'
     api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.0'
-    api 'com.google.code.gson:gson:2.8.5'
+    api 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
 
