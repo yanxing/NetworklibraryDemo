@@ -22,6 +22,7 @@ import com.yanxing.networklibrary.R;
 public class LoadDialog extends BaseDialog {
 
     public static final String ARGUMENT_KEY="tip";
+    private TextView tipTxt;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class LoadDialog extends BaseDialog {
                              Bundle savedInstanceState)
     {
         View view = inflater.inflate(R.layout.load_dialog, container);
-        TextView tipTxt=view.findViewById(R.id.progress_text);
+        tipTxt=view.findViewById(R.id.progress_text);
         Bundle bundle=getArguments();
         if (bundle!=null){
             String tip=bundle.getString(ARGUMENT_KEY);
@@ -52,6 +53,11 @@ public class LoadDialog extends BaseDialog {
         });
         return view;
     }
+
+    public void setTipTxt(String tip){
+        tipTxt.setText(tip);
+    }
+
 
     @Override
     public void onResume() {
