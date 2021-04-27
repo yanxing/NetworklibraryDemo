@@ -13,7 +13,7 @@ import com.yanxing.networklibrary.util.ToastUtil;
 /**
  * 在onNext方法中预处理，如果接口返回的json格式字段和ResultModel不一样，可仿照此类重写BaseAbstractObserver的onNext方法
  * json实体需要继承BaseModel
- * @deprecated 使用 {@link SimpleAbstractObserver}
+ * @deprecated 2.0.5以后废弃，使用 {@link SimpleAbstractObserver}
  * Created by 李双祥 on 2017/5/23.
  */
 public abstract class AbstractObserver<T extends BaseModel> extends BaseAbstractObserver<T> {

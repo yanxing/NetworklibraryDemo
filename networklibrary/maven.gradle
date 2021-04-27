@@ -1,0 +1,57 @@
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+
+group = "io.github.yanxing"
+archivesBaseName = "networklibrary"
+version = "2.1.3"
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            beforeDeployment {
+                MavenDeployment deployment -> signing.signPom(deployment)
+            }
+
+            repository(url: "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            snapshotRepository(url: "https://s01.oss.sonatype.org/content/repositories/snapshots/") {
+                authentication(userName: ossrhUsername, password: ossrhPassword)
+            }
+
+            pom.project {
+                name 'networklibrary'
+                packaging 'aar'
+                description 'a simple retrofit2 and rxjava2 network package for android'
+                url 'https://github.com/yanxing/NetworklibraryDemo'
+
+                scm {
+                    connection 'scm:git:https://github.com/yanxing/NetworklibraryDemo.git'
+                    developerConnection 'scm:git:https://github.com/yanxing/NetworklibraryDemo.git'
+                    url 'https://github.com/yanxing/NetworklibraryDemo.git'
+                }
+
+                licenses {
+                    license {
+                        name 'The Apache License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+
+                developers {
+                    developer {
+                        id 'yanxing'
+                        name 'yanxing'
+                        email 'lyxtime@163.com'
+                    }
+                }
+            }
+        }
+    }
+}
