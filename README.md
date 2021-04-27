@@ -12,7 +12,6 @@ gradle接入，mavenCentral
  implementation 'io.github.yanxing:networklibrary:2.1.3'
  ```
 
-### 说明
 请求示例
 ```kotlin
   serviceAPI
